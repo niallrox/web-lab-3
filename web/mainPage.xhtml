@@ -69,7 +69,7 @@
         <h:form class="input-form" id="form">
             <div class="buttons-form">
                 <div class="buttons">
-                    <strong>X VALUE:</strong>
+                    <strong>X VALUE: </strong>
                     <p:outputLabel class="Xlabel" id="Xlabel" value="#{oneRowBean.x}"/>
 
                     <h:inputHidden id="X" value="#{oneRowBean.x}"/>
@@ -81,11 +81,9 @@
             </div>
             <div class="text_and_select_form">
                 <div class="select">
-                    <strong>
-                        R:
-                    </strong>
+                    <strong>R VALUE: </strong>
                     <span class="error" id="error1"></span>
-                    <h:outputLabel class="Rlabel" id="R" value="R value: #{oneRowBean.r}"/>
+                    <h:outputLabel class="Rlabel" id="R" value="#{oneRowBean.r}"/>
                     <div class="commandLinks">
                         <h:commandLink value="1" action="#{oneRowBean.setR(1)}">
                             <p:ajax update="R"/>
@@ -109,11 +107,11 @@
                     </div>
                 </div>
                 <div class="text">
-                    <h:message for = "Yfield" style="color: red"/>
-                    <h:outputLabel class="Ylabel" id="Y" value="Y value: #{oneRowBean.y}"/>
-                    <p:inputText id="Yfield" value="#{oneRowBean.y}" required="true" maxlength="10">
+                    <strong>Y VALUE: </strong>
+                    <h:outputLabel class="Ylabel" id="Y" value="#{oneRowBean.y}"/>
+                    <h:message for="Yfield"/>
+                    <p:inputText id="Yfield" value="#{oneRowBean.y}" validatorMessage="gslfbj" required="true" maxlength="10"  update = "Y">
                         <f:validateDoubleRange maximum="3" minimum="-3"/>
-                        <f:validator validatorId="TextValidator"/>
                         <f:convertNumber/>
                         <p:ajax event="keyup" update="Y"/>
                     </p:inputText>
@@ -127,26 +125,36 @@
                 </div>
             </div>
         </h:form>
+        <h:form id="invForm">
+            <div class="invisForm">
+                <p:inputText class="invX" value="#{oneRowBean.x}"/>
+                <p:inputText class="invY" value="#{oneRowBean.y}"/>
+                <p:inputText class="invR" value="#{oneRowBean.r}"/>
+            </div>
+            <h:commandButton class="invSendButt">
+                <p:ajax event="click" process="@form" listener="#{data.addTableRow}" update="table"/>
+            </h:commandButton>
+        </h:form>
         <div class="table">
             <p:dataTable id="table" var="row" value="#{data.pointList}">
                 <p:column headerText="X">
-                    <h:outputText value="#{row.x}" />
+                    <h:outputText value="#{row.x}"/>
                 </p:column>
 
                 <p:column headerText="Y">
-                    <h:outputText value="#{row.y}" />
+                    <h:outputText value="#{row.y}"/>
                 </p:column>
 
                 <p:column headerText="R">
-                    <h:outputText value="#{row.r}" />
+                    <h:outputText value="#{row.r}"/>
                 </p:column>
 
                 <p:column headerText="Result">
-                    <h:outputText value="#{row.result}" />
+                    <h:outputText value="#{row.result}"/>
                 </p:column>
 
                 <p:column headerText="Time">
-                    <h:outputText value="#{row.time}" />
+                    <h:outputText value="#{row.time}"/>
                 </p:column>
 
             </p:dataTable>
@@ -155,9 +163,9 @@
     <!--<div class="bottom">
         <a id="bottom-link" href="https://www.youtube.com/watch?v=uMrp1c6hqhY%22%3E">Не нажимайте</a>
     </div>-->
-    <script type="script" src="JS/button.js"></script>
+    <script type="text/javascript" src="JS/svg.js"></script>
     <script type="script" src="JS/graph.js"></script>
-    <script type="script" src="JS/script.js"></script>
+    <script type="text/javascript" src="JS/script.js"></script>
     </body>
 </f:view>
 </html>

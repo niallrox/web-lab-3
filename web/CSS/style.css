@@ -125,6 +125,9 @@ button:focus {
     background-color: black;
     color: white;
 }
+.invisForm{
+    display: none;
+}
 .game{
     width: 100%;
     cursor: pointer;

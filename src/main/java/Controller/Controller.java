@@ -5,6 +5,9 @@ import Foundation.Data;
 import javax.faces.annotation.ManagedProperty;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,10 +24,20 @@ public class Controller {
     private double x;
     private double y;
     private double r;
+    private String condition;
 
     public Controller(){
 
     }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
     public double getX() {
         return x;
     }
@@ -84,7 +97,6 @@ public class Controller {
         }
         return "False";
     }
-
     private boolean checkData(double x, double y, double r) {
         Double[] xInterval = {-4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0};
         Double[] rInterval = {1.0, 1.5, 2.0, 2.5, 3.0};

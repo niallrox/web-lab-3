@@ -25,7 +25,7 @@ public class Data implements Serializable {
 
     private String session;
 
-    private Database database;
+    private Database database = new Database();
 
     /**
      * вызвается при создании сессии и добавляет в коллекцию все точки ей принадлежащие
@@ -35,7 +35,8 @@ public class Data implements Serializable {
      * @throws ClassNotFoundException
      */
     public void init(String session) throws SQLException, IOException, ClassNotFoundException {
-//        PointList.addAll(database.loadFromSQL(session));
+        database.connectSQL("database.properties");
+        PointList.addAll(database.loadFromSQL(session));
     }
     private final LinkedList<Point> PointList = new LinkedList<Point>();
 
@@ -48,15 +49,15 @@ public class Data implements Serializable {
      * @throws SQLException
      */
     public void addTableRow() throws SQLException {
-//        int id = database.getSQLId();
+        int id = database.getSQLId();
         Double x = point.getX();
         Double y = point.getY();
         Double r = point.getR();
-        Point bean = builder.build(point.getId(), x, y, r, LocalTime.now());
+        Point bean = builder.build(id, x, y, r, LocalTime.now());
         if(!(bean==null)) {
             PointList.add(bean);
             System.out.println(PointList.toString());
-//            database.addToSQL(bean);
+            database.addToSQL(bean);
         }
     }
 
