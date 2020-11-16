@@ -1,0 +1,40 @@
+body{
+    background-image: url("https://99px.ru/sstorage/53/2020/07/tmb_313982_975357.jpg");
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.resultFromPhp{
+    background-color: #ac6985;
+}
+.bottom{
+    padding: 2%;
+    margin-top: 25%;
+    background-color: #900012;
+}
+#bottom-link{
+    color: white;
+    margin-left: 50%;
+    font-size: x-large;
+}
+.cap{
+    font-size: x-large;
+    font-family: cursive;
+    padding: 1%;
+    background-color: #900012;
+    color: aliceblue;
+}
+.top{
+    background-color: #f1e8dc;
+}
+.resultR{
+    background-color: black;
+    color: aliceblue;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+.resultR th {
+    width: 135px;
+    height: 60px;
+}

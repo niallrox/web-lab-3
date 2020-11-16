@@ -1,0 +1,51 @@
+.buttons{
+    color: white;
+    background-color: #ea8179;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: inset 0 0 6px black;
+    margin-left: 25px;
+    text-align: center;
+
+}
+.x-buttons_line{
+    display: flex;
+}
+
+.x-button {
+    margin: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 80px;
+}
+.x-button svg {
+    height: 50px;
+    width: 50px;
+    fill: none;
+    stroke-width: 6;
+}
+.x-button svg .o1 {
+    stroke: white;
+    fill: rgba(250, 58, 94, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+.x-button span {
+    position: absolute;
+    margin: auto 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.x-button:hover .o1 {
+    fill: #900012;
+}
+.x-button-active {
+    transition: all 1s ease-in-out;
+    background-color: #900012;
+    border-radius: 80px;
+    color: white;
+}

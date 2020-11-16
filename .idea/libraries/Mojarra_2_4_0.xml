@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Mojarra-2.4.0" type="jsf">
+    <properties version="2.4.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/javax.faces-2.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/WebLab3_war_exploded/WEB-INF/lib/primefaces-6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

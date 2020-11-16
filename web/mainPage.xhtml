@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
+<f:view>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Лаба №3</title>
+        <link rel="stylesheet" href="CSS/style.css"/>
+        <link rel="stylesheet" href="CSS/animation.css"/>
+        <link rel="stylesheet" href="CSS/button.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css"/>
+        <link rel="icon"
+              href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTsYQH5Pw5o_8mjWD3TZfm-uPPJwn5r3y6hBg&amp;usqp=CAU%22/%3E"/>
+    </h:head>
+    <body>
+    <div class="cap animate__animated animate__fadeInDown">
+        Леднев Иван, Рыбальченко Максим P3231 Вариант 2742
+    </div>
+    <div class="content">
+        <div class="svg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="310" height="300" class="svg-graph">
+                <line class="axis" x1="0" x2="300" y1="150" y2="150" stroke="black"></line>
+                <line x1="150" x2="150" y1="0" y2="300" stroke="black"></line>
+                <polygon points="150,0 144,15 156,15" stroke="black"></polygon>
+                <polygon points="300,150 285,156 285,144" stroke="black"></polygon>
+
+                <line x1="200" x2="200" y1="155" y2="145" stroke="black"></line>
+                <line x1="250" x2="250" y1="155" y2="145" stroke="black"></line>
+
+                <line x1="50" x2="50" y1="155" y2="145" stroke="black"></line>
+                <line x1="100" x2="100" y1="155" y2="145" stroke="black"></line>
+
+                <line x1="145" x2="155" y1="100" y2="100" stroke="black"></line>
+                <line x1="145" x2="155" y1="50" y2="50" stroke="black"></line>
+
+                <line x1="145" x2="155" y1="200" y2="200" stroke="black"></line>
+                <line x1="145" x2="155" y1="250" y2="250" stroke="black"></line>
+
+                <text x="195" y="140">R/2</text>
+                <text x="248" y="140">R</text>
+
+                <text x="40" y="140">-R</text>
+                <text x="90" y="140">-R/2</text>
+
+                <text x="160" y="105">R/2</text>
+                <text x="160" y="55">R</text>
+
+                <text x="160" y="205">-R/2</text>
+                <text x="160" y="255">-R</text>
+
+                <polygon points="150,150 200,150 200,250 150,250"
+                         fill="white" fill-opacity="0.3" stroke="white"></polygon>
+
+                <path d="M 150 100 A 50 50 90 0 0 100 150 L 150 150 Z"
+                      fill="white" fill-opacity="0.3" stroke="white"></path>
+
+                <polygon points="150,100 250,150 150,150"
+                         fill="white" fill-opacity="0.3" stroke="white"></polygon>
+
+                <circle r="3" cx="150" cy="150" id="point" fill="black"></circle>
+            </svg>
+        </div>
+        <h:form class="input-form" id="form">
+            <div class="buttons-form">
+                <div class="buttons">
+                    <strong>X VALUE:</strong>
+                    <p:outputLabel class="Xlabel" id="Xlabel" value="#{oneRowBean.x}"/>
+
+                    <h:inputHidden id="X" value="#{oneRowBean.x}"/>
+                    <p:slider for="X" minValue="-4" maxValue="4" step="1">
+                        <p:ajax process="X" update="Xlabel"/>
+                    </p:slider>
+
+                </div>
+            </div>
+            <div class="text_and_select_form">
+                <div class="select">
+                    <strong>
+                        R:
+                    </strong>
+                    <span class="error" id="error1"></span>
+                    <h:outputLabel class="Rlabel" id="R" value="R value: #{oneRowBean.r}"/>
+                    <div class="commandLinks">
+                        <h:commandLink value="1" action="#{oneRowBean.setR(1)}">
+                            <p:ajax update="R"/>
+                        </h:commandLink>
+
+                        <h:commandLink value="2" action="#{oneRowBean.setR(2)}">
+                            <p:ajax update="R"/>
+                        </h:commandLink>
+
+                        <h:commandLink value="3" action="#{oneRowBean.setR(3)}">
+                            <p:ajax update="R"/>
+                        </h:commandLink>
+
+                        <h:commandLink value="4" action="#{oneRowBean.setR(4)}">
+                            <p:ajax update="R"/>
+                        </h:commandLink>
+
+                        <h:commandLink value="5" action="#{oneRowBean.setR(5)}">
+                            <p:ajax update="R"/>
+                        </h:commandLink>
+                    </div>
+                </div>
+                <div class="text">
+                    <h:message for = "Yfield" style="color: red"/>
+                    <h:outputLabel class="Ylabel" id="Y" value="Y value: #{oneRowBean.y}"/>
+                    <p:inputText id="Yfield" value="#{oneRowBean.y}" required="true" maxlength="10">
+                        <f:validateDoubleRange maximum="3" minimum="-3"/>
+                        <f:validator validatorId="TextValidator"/>
+                        <f:convertNumber/>
+                        <p:ajax event="keyup" update="Y"/>
+                    </p:inputText>
+                </div>
+                <div class="send_and_clear">
+                    <h:commandButton class="send" value="Отправить">
+                        <p:ajax event="click" process="@form" listener="#{data.addTableRow}" update="table"/>
+                    </h:commandButton>
+                    <button type="button" id="clear"><span class="text_send_clear">Очистить</span></button>
+                    <button type="button" class="game"><span id="game">Game</span></button>
+                </div>
+            </div>
+        </h:form>
+        <div class="table">
+            <p:dataTable id="table" var="row" value="#{data.pointList}">
+                <p:column headerText="X">
+                    <h:outputText value="#{row.x}" />
+                </p:column>
+
+                <p:column headerText="Y">
+                    <h:outputText value="#{row.y}" />
+                </p:column>
+
+                <p:column headerText="R">
+                    <h:outputText value="#{row.r}" />
+                </p:column>
+
+                <p:column headerText="Result">
+                    <h:outputText value="#{row.result}" />
+                </p:column>
+
+                <p:column headerText="Time">
+                    <h:outputText value="#{row.time}" />
+                </p:column>
+
+            </p:dataTable>
+        </div>
+    </div>
+    <!--<div class="bottom">
+        <a id="bottom-link" href="https://www.youtube.com/watch?v=uMrp1c6hqhY%22%3E">Не нажимайте</a>
+    </div>-->
+    <script type="script" src="JS/button.js"></script>
+    <script type="script" src="JS/graph.js"></script>
+    <script type="script" src="JS/script.js"></script>
+    </body>
+</f:view>
+</html>

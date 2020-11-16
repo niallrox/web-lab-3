@@ -1,0 +1,40 @@
+.X{
+    animation: bounceInDown;
+    animation-duration: 0.5s;
+}
+.Y{
+    animation: bounceInDown;
+    animation-duration: 0.6s;
+}
+.R{
+    animation: bounceInDown;
+    animation-duration: 0.7s;
+}
+.Res{
+    animation: bounceInDown;
+    animation-duration: 0.8s;
+}
+.Time{
+    animation: bounceInDown;
+    animation-duration: 0.9s;
+}
+.Bench{
+    animation: bounceInDown;
+    animation-duration: 1s;
+}
+.svg{
+    animation: fadeInLeft;
+    animation-duration: 1s;
+}
+.input-form{
+    animation: bounceIn;
+    animation-duration: 1s;
+}
+.result{
+    animation: fadeInRight;
+    animation-duration: 1s;
+}
+.bottom{
+    animation: fadeInUp;
+    animation-duration: 1s;
+}

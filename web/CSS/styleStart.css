@@ -1,0 +1,186 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    height: 100vh;
+    display: block;
+}
+.content{
+    display: flex;
+}
+.cap{
+    color: white;
+    font-size: x-large;
+    font-family: cursive;
+    padding: 1%;
+    background-color: #900012;
+    height: 5%;
+    width: 98%;
+}
+.ghost{
+    margin-left: 85%;
+    margin-top: 10%;
+    width: 140px;
+    height: 160px;
+    background-color: white;
+    border-radius: 70px 70px 0 0;
+    position: absolute;
+    animation: floating 2s infinite ease-in-out;
+    display: none;
+}
+
+@keyframes floating {
+    50%{
+        transform: translateY(-30px);
+    }
+}
+
+.face{
+    width: 100px;
+    position: absolute;
+    top: 60px;
+    left: calc(50% - 50px);
+}
+.smoke{
+    display: none;
+    transition: 1s;
+    margin-top: 10%;
+    margin-left: 65%;
+    position: absolute;
+}
+.eyes{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.eyes span{
+    width: 24px;
+    height: 24px;
+    background-color: black;
+    border-radius: 50%;
+    transition: 1.5s;
+    animation: none;
+}
+
+.mouth{
+    width: 40px;
+    height: 20px;
+    background-color: black;
+    margin: auto;
+    border-radius: 0 0 20px 20px;
+    transition: 1.5s;
+}
+
+.hands{
+    width: 180px;
+    position: absolute;
+    left: -20px;
+    top: 90px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hands span{
+    border: 2px solid black;
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+}
+.hands span:first-child{
+    background-color: white;
+    animation: none;
+    transition: 1s;
+}
+
+#siga{
+    margin-top: 10px;
+    margin-left: 25px;
+    width: 4px;
+    height: 25px;
+    background-color: black;
+}
+
+.hands span:last-child{
+    background-color: white;
+}
+
+.feet{
+    position: absolute;
+    width: 100%;
+    bottom: -20px;
+    display: flex;
+}
+
+.feet span{
+    flex: 1;
+    height: 20px;
+    background-color: white;
+    border-radius: 0 0 20px 20px;
+}
+
+.feet span:first-child{
+    border-radius: 0 0 20px 12px;
+}
+
+.feet span:last-child{
+    border-radius: 0 0 12px 20px;
+}
+#smoke{
+    opacity: 0.6;
+    border-radius: 50%;
+}
+.pokur{
+    margin-left: 87%;
+    margin-top: 25%;
+}
+#pokur{
+    display: none;
+    background-color: darkgray;
+    color: black;
+    font-size: medium;
+    cursor: pointer;
+    padding: 40%;
+}
+.clock{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: black;
+    box-shadow: none;
+}
+#hours, #minutes, #seconds{
+    font-size: 150px;
+}
+.date{
+    font-size: x-large;
+    transform: translateY(-50%);
+    margin-left: 43%;
+}
+#svet{
+    background-color: darkgray;
+    outline:none;
+    cursor: pointer;
+    margin-top: 20%;
+    margin-left: 15%;
+    position: absolute;
+    padding: 1%;
+    font-size: medium;
+    border-radius: 25px;
+}
+.jiga{
+    display: none;
+    z-index: 1;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background-color: darkgray;
+    border-radius: 10px;
+    padding: 1%;
+}
+.jigaEst{
+    display: block;
+}
