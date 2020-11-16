@@ -41,12 +41,10 @@ public class Database implements Serializable {
      */
     public synchronized LinkedList<Point> loadFromSQL(String session) throws SQLException, NullPointerException, IOException, ClassNotFoundException {
         LinkedList<Point> col = new LinkedList<>();
-        ps = connect.prepareStatement("SELECT * FROM data WHERE session = ?;");
-        ps.setString(7,session);
+        ps = connect.prepareStatement("SELECT * FROM data;");
         ResultSet res = ps.executeQuery();
         while (res.next()) {
             Point point = new Point();
-            point.setId(res.getInt("id"));
             point.setX(res.getDouble("x"));
             point.setY(res.getDouble("y"));
             point.setR(res.getDouble("r"));
@@ -64,9 +62,9 @@ public class Database implements Serializable {
      * @throws NullPointerException
      */
     public synchronized void addToSQL(Point data) throws SQLException, NullPointerException {
-        ps = connect.prepareStatement("INSERT INTO data (id, x, y, r, " +
+        ps = connect.prepareStatement("INSERT INTO data ( x, y, r, " +
                 "result, time, session) " +
-                "VALUES (currval('idSGsequence'), ?, ?, ?, ?, ?, ?);");
+                " ?, ?, ?, ?, ?, ?);");
         ps.setDouble(1, data.getX());
         ps.setDouble(2, data.getY());
         ps.setDouble(3, data.getR());

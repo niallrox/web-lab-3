@@ -16,19 +16,17 @@ public class Builder {
 
     /**
      * очевидно билдит точку
-     * @param id1
      * @param x
      * @param y
      * @param r
      * @param time
      * @return
      */
-    public Point build(int id1, Double x, Double y, Double r, LocalTime time) {
+    public Point build(Double x, Double y, Double r, LocalTime time) {
         Point bean = new Point();
         bean.setX(x);
         bean.setY(y);
         bean.setR(r);
-        bean.setId(id1);
         bean.setTime(timeFormat(time));
         bean.setResult(controller.result(x,y,r));
         FacesContext fCtx = FacesContext.getCurrentInstance();

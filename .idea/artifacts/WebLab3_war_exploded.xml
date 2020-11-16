@@ -2,15 +2,23 @@
   <artifact type="exploded-war" name="WebLab3:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/WebLab3_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="WebLab3/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="WebLab3" />
+          <element id="dir-copy" path="$PROJECT_DIR$" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Mojarra-2.4.0" />
+          <element id="library" level="project" name="primefaces-6.1" />
+          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.0" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.12" />
+          <element id="library" level="project" name="Java EE 6-Java EE 6" />
+          <element id="library" level="project" name="Maven: javax:javaee-api:8.0" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="WebLab3/web/Web" />
     </root>
   </artifact>
 </component>

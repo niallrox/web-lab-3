@@ -12,7 +12,6 @@ import java.io.Serializable;
 public class Point implements Serializable {
 
 
-    private int id = 1;
     private Double X = 0d;
     private Double Y;
     private Double R = 1d;
@@ -36,7 +35,6 @@ public class Point implements Serializable {
     public Double getX() {return X;}
     public Double getY() {return Y;}
     public Double getR() {return R;}
-    public int getId(){return id;}
 
 
     public void setR(Double r) {R = r;}
@@ -51,7 +49,6 @@ public class Point implements Serializable {
         this.result = result;
     }
 
-    public void setId(int id1){id=id1;}
 
     @Override
     public String toString() {

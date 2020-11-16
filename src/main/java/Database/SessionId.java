@@ -29,7 +29,7 @@ public class SessionId implements HttpSessionListener {
         String session = event.getSession().getId();
         System.out.println("session created: " + session);
         try {
-            data.init(event.getSession().getId());
+            data.init(event.getSession().getId(),database);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {
