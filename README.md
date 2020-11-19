@@ -31,8 +31,4 @@
 
 * Правила навигации между страницами приложения должны быть заданы в ***отдельном конфигурационном файле.***
 
-<p align="center">
-  <img />
-</p>
-
-<div><img src ="https://sun9-18.userapi.com/Vdhv97asSgxzzoE7gPJt2Nw5ipuYGlrDKC7nBQ/yNwNl67T4U8.jpg" /></div>
+<div style="text-align:center" ><img src ="https://sun9-18.userapi.com/Vdhv97asSgxzzoE7gPJt2Nw5ipuYGlrDKC7nBQ/yNwNl67T4U8.jpg" /></div>
