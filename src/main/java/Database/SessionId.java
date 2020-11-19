@@ -4,6 +4,7 @@ import Controller.Builder;
 import Foundation.Data;
 import Foundation.Point;
 
+import javax.inject.Inject;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
@@ -15,21 +16,18 @@ import java.sql.SQLException;
  */
 @WebListener
 public class SessionId implements HttpSessionListener {
-
-    private Database database;
-
+    @Inject
+    private Data data;
     /**
-     * отслеживает создание сессии и загружает из бд элементы ей принадлежащей
+     * отслеживает создание сессии
      * @param event
      */
     @Override
     public void sessionCreated(HttpSessionEvent event) {
-        Data data = new Data();
-        database = new Database();
         String session = event.getSession().getId();
         System.out.println("session created: " + session);
         try {
-            data.init(event.getSession().getId(),database);
+            data.init(event.getSession().getId());
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -40,14 +38,14 @@ public class SessionId implements HttpSessionListener {
     }
 
     /**
-     * отслеживает уничтожение сессии и удаляет из бд элементы принадлежащие ей
+     * отслеживает уничтожение сессии
      * @param event
      */
     @Override
     public void sessionDestroyed(HttpSessionEvent event) {
         System.out.println("session destroyed: " + event.getSession().getId());
         try {
-            database.clearSQL(event.getSession().getId());
+            data.destroy(event.getSession().getId());
         } catch (SQLException e) {
             e.printStackTrace();
         }

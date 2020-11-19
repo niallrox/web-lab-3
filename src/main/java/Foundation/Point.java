@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Table
 public class Point implements Serializable {
 
-
     private Double X = 0d;
     private Double Y;
     private Double R = 1d;
