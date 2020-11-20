@@ -34,3 +34,17 @@
 <p align="center">
   <img src="https://sun9-18.userapi.com/Vdhv97asSgxzzoE7gPJt2Nw5ipuYGlrDKC7nBQ/yNwNl67T4U8.jpg">
 </p>
+
+***
+
+ **SQL-Table:** <br/>
+CREATE TABLE data ( <br/>
+x REAL NOT NULL , <br/>
+y REAL NOT NULL,<br/>
+r REAL CHECK (r >= 1 AND r <= 5) NOT NULL,<br/>
+result VARCHAR(255) NOT NULL, <br/>
+time VARCHAR(255) NOT NULL,<br/>
+session VARCHAR(255) NOT NULL);<br/>
+***
+
+http://localhost:10600/WebLab3_war/startPage.xhtml
