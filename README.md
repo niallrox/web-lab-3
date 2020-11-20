@@ -46,5 +46,8 @@ result VARCHAR(255) NOT NULL, <br/>
 time VARCHAR(255) NOT NULL,<br/>
 session VARCHAR(255) NOT NULL);<br/>
 ***
-
+---
+**Для подключения**
+ssh -L 10600:localhost:10600 XXX@se.ifmo.ru -p2222 
 http://localhost:10600/WebLab3_war/startPage.xhtml
+---
