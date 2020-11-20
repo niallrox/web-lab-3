@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.Date;
 
 public class Builder {
-    Controller controller = new Controller();
+    private Controller controller = new Controller();
     private SimpleDateFormat sOut= new SimpleDateFormat("hh:mm:ss");
     private SimpleDateFormat sIn = new SimpleDateFormat("h:m:s");
 
@@ -22,7 +22,7 @@ public class Builder {
      * @param time
      * @return
      */
-    public Point build(Double x, Double y, Double r, LocalTime time) {
+    public synchronized Point build(Double x, Double y, Double r, LocalTime time) {
         Point bean = new Point();
         bean.setX(x);
         bean.setY(y);
@@ -35,7 +35,13 @@ public class Builder {
         bean.setSession(sessionId);
         return bean;
     }
-    public synchronized String timeFormat(LocalTime time){
+
+    /**
+     * форматирует время в нормальное
+     * @param time
+     * @return
+     */
+    public String timeFormat(LocalTime time){
         Date date = null;
         try {
             date = sIn.parse(String.valueOf(time));

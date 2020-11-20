@@ -1,8 +1,6 @@
 package Database;
 
-import Controller.Builder;
 import Foundation.Data;
-import Foundation.Point;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebListener;

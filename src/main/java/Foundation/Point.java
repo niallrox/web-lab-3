@@ -2,13 +2,10 @@ package Foundation;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import javax.persistence.*;
 import java.io.Serializable;
 
 @Named("oneRowBean")
 @SessionScoped
-@Entity
-@Table
 public class Point implements Serializable {
 
     private Double X = 0d;

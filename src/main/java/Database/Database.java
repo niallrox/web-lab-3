@@ -2,7 +2,7 @@ package Database;
 
 import Foundation.Point;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,20 +10,22 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.Properties;
+
 @Named("Database")
-@ApplicationScoped
+@SessionScoped
 public class Database implements Serializable {
     private Connection connect;
     private PreparedStatement ps;
-    private Statement statement;
+
     /**
      * Подключается к базе данных
+     *
      * @param file
      * @throws IOException
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    public void connectSQL(String file) throws IOException, ClassNotFoundException, SQLException {
+    public synchronized void connectSQL(String file) throws IOException, ClassNotFoundException, SQLException {
         FileInputStream bd = new FileInputStream(file);
         Properties properties = new Properties();
         properties.load(bd);
@@ -32,10 +34,11 @@ public class Database implements Serializable {
         String password = properties.getProperty("password");
         Class.forName("org.postgresql.Driver");
         connect = DriverManager.getConnection(url, login, password);
-        statement = connect.createStatement();
     }
+
     /**
      * возвращает коллекцию результатов принадлежащих этой сессии
+     *
      * @return
      * @throws SQLException
      * @throws NullPointerException
@@ -45,7 +48,7 @@ public class Database implements Serializable {
     public synchronized LinkedList<Point> loadFromSQL(String session) throws SQLException, NullPointerException, IOException, ClassNotFoundException {
         LinkedList<Point> col = new LinkedList<>();
         ps = connect.prepareStatement("SELECT * FROM data WHERE session = ?;");
-        ps.setString(1,session);
+        ps.setString(1, session);
         ResultSet res = ps.executeQuery();
         while (res.next()) {
             Point point = new Point();
@@ -61,11 +64,12 @@ public class Database implements Serializable {
 
     /**
      * добавляет элемент в бд
+     *
      * @param data
      * @throws SQLException
      * @throws NullPointerException
      */
-    public synchronized void addToSQL(Point data) throws SQLException{
+    public synchronized void addToSQL(Point data) throws SQLException {
         ps = connect.prepareStatement("INSERT INTO data (x, y, r, " +
                 "result, time, session) " +
                 " VALUES ( ?, ?, ?, ?, ?, ?);");
@@ -79,18 +83,8 @@ public class Database implements Serializable {
     }
 
     /**
-     * Возвращает следующее значение для id
-     * @return
-     * @throws SQLException
-     */
-    public synchronized int getSQLId() throws SQLException {
-        ResultSet res = statement.executeQuery("SELECT nextval('idSGsequence');");
-        res.next();
-        return res.getInt(1);
-    }
-
-    /**
-     * очищаются элемент принадлижащие этой сессии(вставить в том месте где отлавливается завершение сессии)
+     * очищаются элемент принадлижащие этой сессии
+     *
      * @param session
      * @throws SQLException
      */

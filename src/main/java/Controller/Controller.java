@@ -1,22 +1,15 @@
 package Controller;
 
-import Foundation.Data;
-
-import javax.faces.annotation.ManagedProperty;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 @ManagedBean(name = "controller", eager = true)
 @SessionScoped
 public class Controller {
     /**
      * Класс осуществляет проверку и хранит коллекцию с результатами
      */
-    @ManagedProperty(value = "#{data}")
-    private List<Data> data = Collections.synchronizedList(new ArrayList<>());
+
     private int id = 0;
     private double x;
     private double y;
@@ -55,10 +48,6 @@ public class Controller {
         return r;
     }
 
-    public List<Data> getData() {
-        return data;
-    }
-
     public void setR(double r) {
         this.r = r;
     }
@@ -71,9 +60,6 @@ public class Controller {
         this.y = y;
     }
 
-    public void setData(List<Data> data) {
-        this.data = data;
-    }
 
     /**
      * Отслеживает попадание точки в график

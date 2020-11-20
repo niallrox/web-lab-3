@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.time.LocalTime;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 @Named("data")
 @SessionScoped
@@ -31,17 +33,17 @@ public class Data implements Serializable {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public void init(String session) throws SQLException, IOException, ClassNotFoundException {
+    public synchronized void init(String session) throws SQLException, IOException, ClassNotFoundException {
         database.connectSQL("database.properties");
-        PointList.addAll(database.loadFromSQL(session));
+        pointList.addAll(database.loadFromSQL(session));
     }
 
-    private final LinkedList<Point> PointList = new LinkedList<Point>();
+    private final List<Point> pointList = Collections.synchronizedList(new LinkedList<>());
 
     Builder builder = new Builder();
 
-    public LinkedList<Point> getPointList() {
-        return PointList;
+    public List<Point> getPointList() {
+        return pointList;
     }
 
     /**
@@ -49,14 +51,14 @@ public class Data implements Serializable {
      *
      * @throws SQLException
      */
-    public void addTableRow() throws SQLException {
+    public synchronized void addTableRow() throws SQLException {
         Double x = point.getX();
         Double y = point.getY();
         Double r = point.getR();
         Point bean = builder.build(x, y, r, LocalTime.now());
         if (!(bean == null)) {
-            PointList.add(bean);
-            System.out.println(PointList.toString());
+            pointList.add(bean);
+            System.out.println(pointList.toString());
             database.addToSQL(bean);
         }
     }
@@ -66,7 +68,7 @@ public class Data implements Serializable {
      * @param session
      * @throws SQLException
      */
-    public void destroy(String session) throws SQLException {
+    public synchronized void destroy(String session) throws SQLException {
         database.clearSQL(session);
     }
 
