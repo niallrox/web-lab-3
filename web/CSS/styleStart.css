@@ -136,12 +136,19 @@ body{
     margin-top: 25%;
 }
 #pokur{
+    border-radius: 25px;
     display: none;
     background-color: darkgray;
     color: black;
     font-size: medium;
     cursor: pointer;
     padding: 40%;
+}
+#chirk, #close{
+    cursor: pointer;
+    padding: 2%;
+    border-radius: 25px;
+    width: 100px;
 }
 .clock{
     position: absolute;

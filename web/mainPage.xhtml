@@ -21,6 +21,7 @@
     <body>
     <div class="cap animate__animated animate__fadeInDown">
         Леднев Иван, Рыбальченко Максим P3231 Вариант 2742
+        <h:button outcome="stop" value="Перейти на стартовую страницу"/>
     </div>
     <div class="content">
         <div class="svg">
@@ -82,7 +83,6 @@
             <div class="text_and_select_form">
                 <div class="select">
                     <strong>R VALUE: </strong>
-                    <span class="error" id="error1"></span>
                     <h:outputLabel class="Rlabel" id="R" value="#{oneRowBean.r}"/>
                     <div class="commandLinks">
                         <h:commandLink value="1" action="#{oneRowBean.setR(1)}">
@@ -109,18 +109,16 @@
                 <div class="text">
                     <strong>Y VALUE: </strong>
                     <h:outputLabel class="Ylabel" id="Y" value="#{oneRowBean.y}"/>
-                    <h:message for="Yfield"/>
-                    <p:inputText id="Yfield" value="#{oneRowBean.y}" validatorMessage="gslfbj" required="true" maxlength="10"  update = "Y">
-                        <f:validateDoubleRange maximum="3" minimum="-3"/>
-                        <f:convertNumber/>
+                    <p:inputText id="Yfield" value="#{oneRowBean.y}" required="true" requiredMessage="Вы не ввели Y" p:placeholder="Y"  update = "Y">
+                        <f:validator validatorId="inputTextValidator"/>
                         <p:ajax event="keyup" update="Y"/>
                     </p:inputText>
+                    <br/>
+                    <h:message showSummary="true" showDetail="false" for = "Yfield" style = "color:red" />
                 </div>
                 <div class="send_and_clear">
-                    <h:commandButton class="send" value="Отправить">
-                        <p:ajax event="click" process="@form" listener="#{data.addTableRow}" update="table"/>
-                    </h:commandButton>
-                    <button type="button" id="clear"><span class="text_send_clear">Очистить</span></button>
+                    <h:commandButton action="#{data.addTableRow}" class="send"
+                                     type="submit" value="Отправить"/>
                     <button type="button" class="game"><span id="game">Game</span></button>
                 </div>
             </div>
@@ -130,10 +128,9 @@
                 <p:inputText class="invX" value="#{oneRowBean.x}"/>
                 <p:inputText class="invY" value="#{oneRowBean.y}"/>
                 <p:inputText class="invR" value="#{oneRowBean.r}"/>
-            </div>
-            <h:commandButton class="invSendButt">
-                <p:ajax event="click" process="@form" listener="#{data.addTableRow}" update="table"/>
-            </h:commandButton>
+            </div> <h:commandButton class="invSendButt" value="Отправить последнюю точку">
+            <p:ajax event="click" process="@form" listener="#{data.addTableRow}" update="table"/>
+        </h:commandButton>
         </h:form>
         <div class="table">
             <p:dataTable id="table" var="row" value="#{data.pointList}">
@@ -142,7 +139,7 @@
                 </p:column>
 
                 <p:column headerText="Y">
-                    <h:outputText value="#{row.y}"/>
+                    <h:outputText  value="#{row.y}"/>
                 </p:column>
 
                 <p:column headerText="R">

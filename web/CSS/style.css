@@ -58,6 +58,7 @@ select{
 
 .text_and_select_form{
     margin-left: 5%;
+    display: block;
 }
 
 .select{
@@ -86,14 +87,15 @@ LABEL > STRONG{
 .send_and_clear{
     margin-top: 5%;
 }
-#send, #clear{
-    width: 48%;
+.send, #clear{
+    color: white;
+    width: 100%;
     cursor: pointer;
     padding: 10px;
     border-radius: 20px;
     border-color: white;
     background-color: #ea8179;
-    box-shadow: inset 0 0 6px;
+    box-shadow: inset 0 0 6px black;
 }
 #clear{
     margin-left: 1%;
@@ -103,6 +105,19 @@ LABEL > STRONG{
 }
 .header_item{
     color: white;
+}
+.invisForm{
+    display: none;
+}
+.invSendButt{
+    color: white;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+    border-color: white;
+    background-color: #ea8179;
+    box-shadow: inset 0 0 6px black;
 }
 .table{
     width: 500px;
@@ -124,9 +139,6 @@ button:focus {
 .resultHeader{
     background-color: black;
     color: white;
-}
-.invisForm{
-    display: none;
 }
 .game{
     width: 100%;

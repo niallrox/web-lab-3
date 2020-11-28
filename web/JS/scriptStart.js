@@ -70,7 +70,7 @@ function time() {
     mm = (day.getMinutes() < 10) ? '0' + day.getMinutes() + ':' : day.getMinutes() + ':';
     ss = (day.getSeconds() < 10) ? '0' + day.getSeconds() : day.getSeconds();
     dayNow = (day.getDate() < 10) ? '0' + day.getDate() + '/' : day.getDate() + '/';
-    mes = (day.getMonth() < 10) ? '0' + day.getMonth() + '/' : day.getMonth() + '/';
+    mes = (day.getMonth() < 10) ? '0' + day.getMonth() + '/' : day.getMonth()+1 + '/';
     year = day.getFullYear();
     h.innerHTML = hh
     m.innerHTML = mm

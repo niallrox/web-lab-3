@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Point implements Serializable {
 
     private Double X = 0d;
-    private Double Y;
+    private String Y;
     private Double R = 1d;
     private String result;
     private String time;
@@ -29,13 +29,13 @@ public class Point implements Serializable {
 
     public String getTime() {return time;}
     public Double getX() {return X;}
-    public Double getY() {return Y;}
+    public String getY() {return Y;}
     public Double getR() {return R;}
 
 
     public void setR(Double r) {R = r;}
     public void setX(Double x) {X = x;}
-    public void setY(Double y) {Y = y;}
+    public void setY(String y) {Y = y;}
 
     public void setTime(String time) {
         this.time = time;

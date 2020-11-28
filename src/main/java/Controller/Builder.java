@@ -23,9 +23,10 @@ public class Builder {
      * @return
      */
     public synchronized Point build(Double x, Double y, Double r, LocalTime time) {
+        System.out.println(x + " " + y + " " + r);
         Point bean = new Point();
         bean.setX(x);
-        bean.setY(y);
+        bean.setY(String.valueOf(y));
         bean.setR(r);
         bean.setTime(timeFormat(time));
         bean.setResult(controller.result(x,y,r));

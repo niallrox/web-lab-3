@@ -53,13 +53,13 @@ public class Data implements Serializable {
      */
     public synchronized void addTableRow() throws SQLException {
         Double x = point.getX();
-        Double y = point.getY();
+        Double y = Double.parseDouble(point.getY());
         Double r = point.getR();
         Point bean = builder.build(x, y, r, LocalTime.now());
         if (!(bean == null)) {
             pointList.add(bean);
             System.out.println(pointList.toString());
-            database.addToSQL(bean);
+//            database.addToSQL(bean);
         }
     }
 

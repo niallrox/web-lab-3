@@ -22,8 +22,6 @@ public class SessionId implements HttpSessionListener {
      */
     @Override
     public void sessionCreated(HttpSessionEvent event) {
-        String session = event.getSession().getId();
-        System.out.println("session created: " + session);
         try {
             data.init(event.getSession().getId());
         } catch (SQLException e) {
@@ -41,7 +39,6 @@ public class SessionId implements HttpSessionListener {
      */
     @Override
     public void sessionDestroyed(HttpSessionEvent event) {
-        System.out.println("session destroyed: " + event.getSession().getId());
         try {
             data.destroy(event.getSession().getId());
         } catch (SQLException e) {

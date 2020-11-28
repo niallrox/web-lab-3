@@ -53,7 +53,7 @@ public class Database implements Serializable {
         while (res.next()) {
             Point point = new Point();
             point.setX(res.getDouble("x"));
-            point.setY(res.getDouble("y"));
+            point.setY(String.valueOf(res.getDouble("y")));
             point.setR(res.getDouble("r"));
             point.setResult(res.getString("result"));
             point.setTime(res.getString("time"));
@@ -74,7 +74,7 @@ public class Database implements Serializable {
                 "result, time, session) " +
                 " VALUES ( ?, ?, ?, ?, ?, ?);");
         ps.setDouble(1, data.getX());
-        ps.setDouble(2, data.getY());
+        ps.setDouble(2, Double.parseDouble(data.getY()));
         ps.setDouble(3, data.getR());
         ps.setString(4, data.getResult());
         ps.setString(5, data.getTime());

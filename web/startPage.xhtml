@@ -3,7 +3,6 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <head>
@@ -14,13 +13,16 @@
     <body>
     <div class="cap">
         Леднев Иван, Рыбальченко Максим P3231 Вариант 2742
+        <h:button outcome="go" value="Перейти на основную страницу"/>
     </div>
     <div class="content">
         <div class="jiga">
             <img id="ysk" src="content/khuy.jpg"/>
             <br/>
-            <button id="chirk">Чиркануть</button>
-            <button id="close">Не подкуривать</button>
+            <div class="but">
+                <button id="chirk">Чиркануть</button>
+                <button id="close">Не подкуривать</button>
+            </div>
         </div>
         <div class="light">
             <button id="svet">Свет</button>
