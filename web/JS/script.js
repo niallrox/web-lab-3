@@ -42,7 +42,7 @@ $(function () {
             let a = row.childNodes;
             let b = a[0].innerHTML;
             let c = a[1].innerHTML;
-            let d = a[2].innerHTML;
+            let d = document.querySelector('.Rlabel').innerHTML;
             let res;
             if (a[3].innerHTML === "True") {
                 res = "green";
