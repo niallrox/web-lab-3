@@ -56,5 +56,5 @@ password =  ... <br/>
 
 **Для подключения** <br/>
 ssh -L 10600:localhost:10600 XXX@se.ifmo.ru -p2222 <br/>
-http://localhost:10600/WebLab3_war/startPage.xhtml
+http://localhost:10600/WebLab3_war
 
