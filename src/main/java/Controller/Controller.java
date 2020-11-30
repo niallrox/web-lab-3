@@ -3,8 +3,6 @@ package Controller;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.Arrays;
-@ManagedBean(name = "controller", eager = true)
-@SessionScoped
 public class Controller {
     /**
      * Класс осуществляет проверку и хранит коллекцию с результатами

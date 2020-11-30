@@ -45,7 +45,7 @@ public class Database implements Serializable {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public synchronized LinkedList<Point> loadFromSQL(String session) throws SQLException, NullPointerException, IOException, ClassNotFoundException {
+    public  LinkedList<Point> loadFromSQL(String session) throws SQLException, NullPointerException, IOException, ClassNotFoundException {
         LinkedList<Point> col = new LinkedList<>();
         ps = connect.prepareStatement("SELECT * FROM data WHERE session = ?;");
         ps.setString(1, session);

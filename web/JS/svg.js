@@ -5,12 +5,12 @@ $(function () {
     let YG = document.querySelector(".invY");
     let RG = document.querySelector(".invR");
     let RGG = document.querySelector('.Rlabel');
-    $('svg').on('click', function () {
+    $('#fu').on('click', function () {
         if(RG.value) {
             let position = getMousePosition(svg, event);
             X = position.x;
             Y = position.y;
-            RG.value = r
+            RG.value = 4
             XG.value = (((X - 150) * RG.value) / 100).toFixed(1);
             YG.value = (((150 - Y) * RG.value) / 100).toFixed(1);
             if(result(XG.value, YG.value, RG.value) === "True"){
@@ -31,7 +31,7 @@ $(function () {
     }
 
     function setPointer(x, y) {
-        svg.insertAdjacentHTML("beforeend", `<circle class="smallDots" r="3" cx="${x}" cy="${y}" fill="${color}"></circle>`);
+        svg.insertAdjacentHTML("beforeend", `<circle r="3" cx="${x}" cy="${y}" fill="${color}"></circle>`);
     }
     function result(x, y, r) {
         if (x >= 0 && y >= 0 && y <= (-0.5 * x + r / 2)) {

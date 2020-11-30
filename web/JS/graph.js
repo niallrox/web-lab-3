@@ -25,6 +25,15 @@ function getMousePosition(svg, event) {
         y: event.clientY - rect.top
     };
 }
+function drawPointet(x, y, r) {
+    if (getHit(x, y, r) === true) {
+        document.querySelector('.graph').innerHTML += '<circle r="3" cx="' + (x * 120 / r + 200) +
+            '" cy="' + (y * -120 / r + 200) + '" fill="yellow" ></circle>'
+    } else {
+        document.querySelector('.graph').innerHTML += '<circle r="3" cx="' + (x * 120 / r + 200) +
+            '" cy="' + (y * -120 / r + 200) + '" fill="red" ></circle>'
+    }
+}
 
 function setPointer(x, y) {
     svg.insertAdjacentHTML("beforeend", `<circle class="smallDots" r="3" cx="${x}" cy="${y}" fill="white"></circle>`);

@@ -10,6 +10,8 @@ $(function () {
         setTimeout(function () {
             xyr()
             setPoint(x, y, r)
+            $(".smallDots").remove()
+            drawPoints()
         }, 1000)
     })
     $('.ui-slider-handle').on('click', function () {
