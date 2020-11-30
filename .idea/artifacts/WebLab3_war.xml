@@ -3,6 +3,12 @@
     <output-path>$PROJECT_DIR$/out/artifacts/WebLab3_war</output-path>
     <root id="archive" name="WebLab3_war.war">
       <element id="artifact" artifact-name="WebLab3:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="jpa-descriptors" facet="WebLab3/jpa/JPA" />
+          <element id="dir-copy" path="$PROJECT_DIR$" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

@@ -12,9 +12,6 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-    <listener>
-        <listener-class>Database.SessionId</listener-class>
-    </listener>
     <welcome-file-list>
         <welcome-file>/startPage.xhtml</welcome-file>
     </welcome-file-list>

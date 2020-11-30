@@ -1,16 +1,9 @@
 package Foundation;
+public class Point{
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
-import java.io.Serializable;
-
-@Named("oneRowBean")
-@SessionScoped
-public class Point implements Serializable {
-
-    private Double X = 0d;
+    private Double X;
     private String Y;
-    private Double R = 1d;
+    private Double R;
     private String result;
     private String time;
     private String session;

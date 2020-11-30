@@ -5,7 +5,7 @@ $(function () {
     let YG = document.querySelector(".invY");
     let RG = document.querySelector(".invR");
     let RGG = document.querySelector('.Rlabel');
-    $('#fu').on('click', function () {
+    $('svg').on('click', function () {
         if(RG.value) {
             let position = getMousePosition(svg, event);
             X = position.x;

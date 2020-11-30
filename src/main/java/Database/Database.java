@@ -2,40 +2,24 @@ package Database;
 
 import Foundation.Point;
 
+import javax.annotation.Resource;
+import javax.annotation.sql.DataSourceDefinition;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import java.io.FileInputStream;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.*;
 import java.util.LinkedList;
-import java.util.Properties;
 
+@DataSourceDefinition(name = "java:app/Database", className = "org.postgresql.ds.PGSimpleDataSource", url = "jdbc:postgresql://pg:5432/studs", user = "s286535", password = "laz442")
 @Named("Database")
 @SessionScoped
 public class Database implements Serializable {
     private Connection connect;
     private PreparedStatement ps;
-
-    /**
-     * Подключается к базе данных
-     *
-     * @param file
-     * @throws IOException
-     * @throws ClassNotFoundException
-     * @throws SQLException
-     */
-    public synchronized void connectSQL(String file) throws IOException, ClassNotFoundException, SQLException {
-        FileInputStream bd = new FileInputStream(file);
-        Properties properties = new Properties();
-        properties.load(bd);
-        String url = properties.getProperty("location");
-        String login = properties.getProperty("username");
-        String password = properties.getProperty("password");
-        Class.forName("org.postgresql.Driver");
-        connect = DriverManager.getConnection(url, login, password);
-    }
-
+    @Resource(lookup = "java:app/Database")
+    private DataSource ds;
     /**
      * возвращает коллекцию результатов принадлежащих этой сессии
      *
@@ -45,7 +29,8 @@ public class Database implements Serializable {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public  LinkedList<Point> loadFromSQL(String session) throws SQLException, NullPointerException, IOException, ClassNotFoundException {
+    public LinkedList<Point> loadFromSQL(String session) throws SQLException, NullPointerException, IOException, ClassNotFoundException {
+        connect = ds.getConnection();
         LinkedList<Point> col = new LinkedList<>();
         ps = connect.prepareStatement("SELECT * FROM data WHERE session = ?;");
         ps.setString(1, session);
@@ -59,6 +44,7 @@ public class Database implements Serializable {
             point.setTime(res.getString("time"));
             col.add(point);
         }
+        connect.close();
         return col;
     }
 
@@ -70,6 +56,7 @@ public class Database implements Serializable {
      * @throws NullPointerException
      */
     public void addToSQL(Point data) throws SQLException {
+        connect = ds.getConnection();
         ps = connect.prepareStatement("INSERT INTO data (x, y, r, " +
                 "result, time, session) " +
                 " VALUES ( ?, ?, ?, ?, ?, ?);");
@@ -80,6 +67,7 @@ public class Database implements Serializable {
         ps.setString(5, data.getTime());
         ps.setString(6, data.getSession());
         ps.execute();
+        connect.close();
     }
 
     /**
@@ -89,8 +77,10 @@ public class Database implements Serializable {
      * @throws SQLException
      */
     public void clearSQL(String session) throws SQLException {
+        connect = ds.getConnection();
         ps = connect.prepareStatement("DELETE FROM data WHERE session = ?;");
         ps.setString(1, session);
         ps.execute();
+        connect.close();
     }
 }
