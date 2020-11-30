@@ -8,6 +8,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 
+
 @FacesValidator("inputTextValidator")
 public class TextValidator implements Validator {
     private FacesMessage ex1 = new FacesMessage("Y должен быть от -3 до 3");
