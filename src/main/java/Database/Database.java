@@ -69,7 +69,7 @@ public class Database implements Serializable {
      * @throws SQLException
      * @throws NullPointerException
      */
-    public synchronized void addToSQL(Point data) throws SQLException {
+    public void addToSQL(Point data) throws SQLException {
         ps = connect.prepareStatement("INSERT INTO data (x, y, r, " +
                 "result, time, session) " +
                 " VALUES ( ?, ?, ?, ?, ?, ?);");
@@ -88,7 +88,7 @@ public class Database implements Serializable {
      * @param session
      * @throws SQLException
      */
-    public synchronized void clearSQL(String session) throws SQLException {
+    public void clearSQL(String session) throws SQLException {
         ps = connect.prepareStatement("DELETE FROM data WHERE session = ?;");
         ps.setString(1, session);
         ps.execute();

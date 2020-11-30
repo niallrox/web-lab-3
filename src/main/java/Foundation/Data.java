@@ -1,6 +1,6 @@
 package Foundation;
 
-import Controller.Builder;
+import Controller.AreaChecker;
 import Database.Database;
 
 import javax.enterprise.context.SessionScoped;
@@ -40,7 +40,7 @@ public class Data implements Serializable {
 
     private final List<Point> pointList = Collections.synchronizedList(new LinkedList<>());
 
-    Builder builder = new Builder();
+    AreaChecker areaChecker = new AreaChecker();
 
     public List<Point> getPointList() {
         return pointList;
@@ -55,7 +55,7 @@ public class Data implements Serializable {
         Double x = point.getX();
         Double y = Double.parseDouble(point.getY());
         Double r = point.getR();
-        Point bean = builder.build(x, y, r, LocalTime.now());
+        Point bean = areaChecker.build(x, y, r, LocalTime.now());
         if (!(bean == null)) {
             pointList.add(bean);
             System.out.println(pointList.toString());
