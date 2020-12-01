@@ -10,25 +10,26 @@ import java.time.LocalTime;
 import java.util.Date;
 
 public class AreaChecker {
-    private SimpleDateFormat sOut= new SimpleDateFormat("hh:mm:ss");
+    private SimpleDateFormat sOut = new SimpleDateFormat("hh:mm:ss");
     private SimpleDateFormat sIn = new SimpleDateFormat("h:m:s");
 
     /**
      * очевидно билдит точку
+     *
      * @param x
      * @param y
      * @param r
      * @param time
      * @return
      */
-    public synchronized Point build(Double x, Double y, Double r, LocalTime time) {
+    public Point build(Double x, Double y, Double r, LocalTime time) {
         System.out.println(x + " " + y + " " + r);
         Point bean = new Point();
         bean.setX(x);
         bean.setY(String.valueOf(y));
         bean.setR(r);
         bean.setTime(timeFormat(time));
-        bean.setResult(result(x,y,r));
+        bean.setResult(String.valueOf(result(x, y, r)));
         FacesContext fCtx = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
         String sessionId = session.getId();
@@ -38,29 +39,40 @@ public class AreaChecker {
 
     /**
      * форматирует время в нормальное
+     *
      * @param time
      * @return
      */
-    public String timeFormat(LocalTime time){
+    public String timeFormat(LocalTime time) {
         Date date = null;
         try {
             date = sIn.parse(String.valueOf(time));
-        } catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return sOut.format(date);
     }
-    public String result(double x, double y, double r) {
+
+    public boolean result(double x, double y, double r) {
+        /*
+        triangle
+         */
         if (x >= 0 && y >= 0 && y <= (-0.5 * x + r / 2)) {
-            return "True";
+            return true;
         }
+        /*
+        circle
+         */
         if (x <= 0 && y >= 0 && (x * x + y * y) <= (r * r) / 4) {
-            return "True";
+            return true;
         }
+        /*
+        rectangle
+         */
         if (y <= 0 && y >= -r && x >= 0 && x <= r / 2) {
-            return "True";
+            return true;
         }
-        return "False";
+        return false;
     }
 
 }
