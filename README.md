@@ -46,11 +46,6 @@ result VARCHAR(255) NOT NULL, <br/>
 time VARCHAR(255) NOT NULL,<br/>
 session VARCHAR(255) NOT NULL);<br/>
 
-Нужно также создать файл с именем "database.properties" с наполнением <br/>
-location = jdbc:postgresql://pg:5432/studs <br/>
-username =  ... <br/>
-password =  ... <br/>
-
 ***
 
 
