@@ -38,9 +38,6 @@ public class Data implements Serializable {
     /**
      * вызвается при создании сессии и добавляет в коллекцию все точки ей принадлежащие
      *
-     * @throws SQLException
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
     @PostConstruct
     public void init() {
@@ -50,12 +47,8 @@ public class Data implements Serializable {
         String sessionId = session.getId();
         try {
             pointList.addAll(database.loadFromSQL(sessionId));
-        } catch (SQLException throwables) {
+        } catch (SQLException | IOException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
@@ -86,7 +79,6 @@ public class Data implements Serializable {
 
     /**
      * удаляет данные из бд этой сессии при краше сервера/краше сессии
-     * @throws SQLException
      */
     @PreDestroy
     public void destroy() {
