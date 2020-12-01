@@ -12,13 +12,12 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.LinkedList;
 
-@DataSourceDefinition(name = "java:app/Database", className = "org.postgresql.ds.PGSimpleDataSource", url = "jdbc:postgresql://pg:5432/studs", user = "", password = "")
 @Named("Database")
 @SessionScoped
 public class Database implements Serializable {
     private Connection connect;
     private PreparedStatement ps;
-    @Resource(lookup = "java:app/Database")
+    @Resource(lookup = "java:jboss/Database")
     private DataSource ds;
     /**
      * возвращает коллекцию результатов принадлежащих этой сессии

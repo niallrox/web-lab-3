@@ -16,7 +16,7 @@ body{
     padding: 1%;
     background-color: #900012;
 }
-.commandLink{
+.commandLinks>a{
     margin-left: 1%;
 }
 .svg-graph{
