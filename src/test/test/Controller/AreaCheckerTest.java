@@ -1,6 +1,6 @@
 package Controller;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class AreaCheckerTest {
-    private AreaChecker areaChecker;
-    private double r;
+    private static AreaChecker areaChecker;
+    private static double r;
 
-    @BeforeEach
-    public void init() {
+    @BeforeAll
+    static void init() {
         areaChecker = new AreaChecker();
         r = 1.0;
     }
