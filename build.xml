@@ -1,0 +1,123 @@
+<project name="WebLab3" xmlns:ivy="antlib:org.apache.ivy.ant" default="build">
+
+    <loadproperties srcfile="ant.properties"/>
+
+    <target name="resolve">
+        <ivy:retrieve/>
+    </target>
+
+    <path id="build-path">
+        <fileset dir="${lib}" includes="*.jar"/>
+    </path>
+
+    <path id="test-path">
+        <path refid="build-path"/>
+        <pathelement location="${classes}"/>
+    </path>
+
+
+    <target name="compile" depends="resolve">
+        <echo>compile...</echo>
+        <mkdir dir="${classes}"/>
+        <javac destdir="${classes}" srcdir="${main}" includeantruntime="false">
+            <classpath refid="build-path"/>
+        </javac>
+
+        <mkdir dir="${tests}"/>
+        <echo>compile tests...</echo>
+        <javac destdir="${tests}" srcdir="${test}" includeantruntime="false">
+            <classpath refid="test-path"/>
+        </javac>
+        <echo>End of compilation!</echo>
+    </target>
+
+
+    <target name="build" depends="compile">
+        <mkdir dir="${out}"/>
+        <war destfile="${out}/${ant.project.name}.war" webxml="${main}/webapp/WEB-INF/web.xml">
+            <classes dir="${classes}"/>
+            <lib dir="${lib}"/>
+            <fileset dir="${main}/webapp/"/>
+            <manifest>
+                <attribute name="Created-By" value="Web"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+                <attribute name="Main-Class" value="NoClass"/>
+            </manifest>
+        </war>
+        <echo>End of building</echo>
+    </target>
+
+
+    <target name="clean">
+        <echo>Clean</echo>
+        <delete dir="${build}"/>
+        <delete dir="${tests}"/>
+        <delete dir="${zips}"/>
+        <echo>End of cleaning</echo>
+    </target>
+
+
+    <target name="test" depends="build">
+        <echo>Start Testing</echo>
+        <mkdir dir="${report}"/>
+        <junit haltonfailure="on" printsummary="on">
+            <classpath>
+                <pathelement path="${classes}"/>
+                <path refid="build-path"/>
+                <pathelement path="${tests}"/>
+            </classpath>
+            <test name="Controller.AreaCheckerTest"/>
+        </junit>
+    </target>
+
+
+    <target name="scp" depends="build">
+        <echo>Start sending on Helios</echo>
+        <scp file="${out}/${ant.project.name}.war"
+             todir="${login}@${host}:~/WebLab3"
+             password="${password}" trust="true" port="${port}"/>
+    </target>
+
+
+    <target name="makeZip">
+        <zip destfile="zipsmanual.zip" basedir="repository/lab3" update="true"/>
+    </target>
+
+
+    <target name="team" depends="build">
+        <mkdir dir="${build}/forZips"/>
+        <typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpath="svnant.jar"/>
+        <echo>Start working with svn</echo>
+        <svn javahl="false">
+            <update dir="${repo}" revision="PREV"></update>
+        </svn>
+        <javac destdir="${build}/forZips" srcdir="${repo}" includeantruntime="false">
+            <classpath refid="build-path"/>
+        </javac>
+        <jar destfile="${out}/forZips/file1.jar" basedir="${build}/forZips">
+            <manifest>
+                <attribute name="Created-By" value="Web"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+                <attribute name="Main-Class" value="NoClass"/>
+            </manifest>
+        </jar>
+
+        <delete dir="${build}/forZips"></delete>
+        <mkdir dir="${build}/forZips"/>
+
+        <svn javahl="false">
+            <update dir="${repo}" revision="PREV"></update>
+        </svn>
+        <javac destdir="${build}/forZips" srcdir="${repo}" includeantruntime="false">
+            <classpath refid="build-path"/>
+        </javac>
+        <jar destfile="${out}/forZips/file2.jar" basedir="${build}/forZips">
+            <manifest>
+                <attribute name="Created-By" value="Web"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+                <attribute name="Main-Class" value="NoClass"/>
+            </manifest>
+        </jar>
+        <zip destfile="${zips}/file.zip" basedir="${out}/forZips" update="true"/>
+    </target>
+</project>
